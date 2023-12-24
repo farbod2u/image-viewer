@@ -1,0 +1,9 @@
+<section *ngFor="let image of images">
+  <div class="card">
+    <div class="container">
+      <h4><b>{{image.pageNumber}}</b></h4>
+    </div>
+    <img [defaultImage]="defaultImage" [lazyLoad]="image.imageUrl"/>
+  </div>
+</section>
+<br>
