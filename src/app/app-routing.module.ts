@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from "./app.component";
 import {InsuranceDocumentComponent} from "./components/insurance-document/insurance-document/insurance-document.component";
 import {ErrorComponent} from "./components/error/error/error.component";
 
