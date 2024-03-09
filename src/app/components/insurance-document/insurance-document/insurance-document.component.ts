@@ -18,16 +18,26 @@ export class InsuranceDocumentComponent implements OnInit {
     console.log("InsuranceDocumentComponent => constructor");
   }
 
+  private toChar(p: string): string {
+    let res: string = "";
+    p.split(",")
+      .map(c => Number(c))
+      .forEach(c => res += String.fromCharCode(c));
+
+    return res;
+  }
+
   ngOnInit(): void {
     console.log("InsuranceDocumentComponent => ngOnInit");
 
-    this.getImages(this.route.snapshot.params['filter'],
-      this.route.snapshot.params['id']);
+    let token: string = this.route.snapshot.params["t"];
+    token = this.toChar(token);
+
+    this.getImages(this.route.snapshot.params['filter'], token);
   }
 
-
-  getImages(filter: string, id: string) {
-    this.docService.getImages(filter, id).subscribe({
+  getImages(filter: string, token: string) {
+    this.docService.getImages(filter, token).subscribe({
       next: v => {
         v.data.forEach(value => value.imageUrl = value.imageUrl.replace("localhost", "172.16.11.116"));
         this.images = v.data;

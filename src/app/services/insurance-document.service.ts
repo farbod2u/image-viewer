@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ResponseModel} from "../model/response/response-model";
 
@@ -12,8 +12,15 @@ export class InsuranceDocumentService {
   constructor(private httpCilent: HttpClient) {
   }
 
-  getImages(filter: string, id: string): Observable<ResponseModel> {
+  getImages(filter: string, token: string): Observable<ResponseModel> {
     console.log("service : " + filter);
-    return this.httpCilent.get<ResponseModel>(`${this.baseUrl}` + filter + "/" + id);
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.httpCilent.get<ResponseModel>(`${this.baseUrl}` + filter,
+      {headers: httpHeaders});
   }
 }

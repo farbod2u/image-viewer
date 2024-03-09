@@ -5,7 +5,7 @@ import {ErrorComponent} from "./components/error/error/error.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'main', pathMatch: 'full', data: {currentUrl: 'main'}},
-  {path: 'main/:filter/:id', component: InsuranceDocumentComponent},
+  {path: 'main/:filter/:t', component: InsuranceDocumentComponent},
   {path: 'error', component: ErrorComponent},
   {path: "**", redirectTo: 'error'}
 ];
