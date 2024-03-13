@@ -29,11 +29,9 @@ export class InsuranceDocumentComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("InsuranceDocumentComponent => ngOnInit");
-
-    let token: string = this.route.snapshot.params["t"];
-    token = this.toChar(token);
-
-    this.getImages(this.route.snapshot.params['filter'], token);
+    localStorage.setItem("t", this.toChar(this.route.snapshot.params["t"]));
+    // @ts-ignore
+    this.getImages(this.route.snapshot.params['filter'], localStorage.getItem("t"));
   }
 
   getImages(filter: string, token: string) {
